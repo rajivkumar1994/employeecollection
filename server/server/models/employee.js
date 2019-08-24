@@ -19,6 +19,9 @@ let EmployeeSchema = new Schema({
       type: [String],
       required: true
    },
+   empno: {
+      type: Number
+   }
    /*img: {
       data: Buffer,
       contentType: String
@@ -27,7 +30,6 @@ let EmployeeSchema = new Schema({
       collection: 'employees'
    });
 
+EmployeeSchema.plugin(AutoIncrement, { id:'emp_seq', inc_field: 'empno' });
 const Employee = mongoose.model('Employee', EmployeeSchema);
 module.exports = {Employee};
-
-EmployeeSchema.plugin(AutoIncrement, { inc_field: 'id' });

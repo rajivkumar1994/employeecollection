@@ -10,7 +10,7 @@ const employeeRoutes = require('./controllers/employee.route');
 const app = express();
 mongoose.Promise = global.Promise;
 
-app.use(express.static('../../client'));
+app.use(express.static('../../client/build'));
 app.use(bodyParser.json());
 app.use(cors());
 

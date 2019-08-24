@@ -1,15 +1,40 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { EmployeeserviceService } from '../../service/employeeservice.service';
 
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
-  styleUrls: ['./add-employee.component.css']
 })
 export class AddEmployeeComponent implements OnInit {
 
-  constructor() { }
+  formGroup: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private service: EmployeeserviceService, private router: Router) { }
 
   ngOnInit() {
+    this.initializeForm();
+  }
+
+  // To initialize Form
+  initializeForm() {
+    this.formGroup = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+    });
+  }
+
+  // Add Employee When Submit Button Is Clicked
+  addEmployee() {
+    if (this.formGroup.valid) {
+      let data = this.formGroup.value;
+      this.service.addEmployee(data).subscribe(() => {
+        this.router.navigate(['/employees']);
+      });
+    }
   }
 
 }

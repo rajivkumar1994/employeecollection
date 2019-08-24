@@ -38,12 +38,11 @@ employeeRoute.get('/:id', (req, res) => {
 });
 
 employeeRoute.put('/', ((req, res) => {
-    console.log(req.file);
     let dob = new Date(req.body.dob);
-    let img = {
+    /*let img = {
         data: fs.readFileSync(req.files),
         contentType: 'image/png',
-    }
+    }*/
     let employee = new Employee({
         name: req.body.name,
         dob: req.body.dob,

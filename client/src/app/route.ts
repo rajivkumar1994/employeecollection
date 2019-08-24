@@ -6,8 +6,8 @@ import { EmployeecollectionsComponent } from './employeecollections/employeecoll
 const appRoutes: Routes = [
  { path: '', redirectTo:'employees',pathMatch:'full' },
  { 
- path: '', 
- loadChildren: './mean-stack-crud/index.module#MeanStackModule'
+ path: 'employees', 
+ loadChildren: './employeecollections/index.module#EmployeecollectionsModule'
  },
  
 ];

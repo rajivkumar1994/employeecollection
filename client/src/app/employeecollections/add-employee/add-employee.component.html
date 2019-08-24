@@ -1,1 +1,50 @@
-<p>add-employee works!</p>
+<table>
+    <tr>
+        <td colspan="2">
+            <mat-form-field class="demo-full-width">
+                <input formControlName="name" matInput placeholder="name">
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="!formGroup.get('name').valid && formGroup.get('name').touched">Please enter Name</span>
+            </mat-error>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <mat-form-field class="demo-full-width">
+                <input formControlName="dob" matInput placeholder="dob">
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="!formGroup.get('dob').valid && formGroup.get('dob').touched">Please enter Date Of Birth</span>
+            </mat-error>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <mat-form-field class="demo-full-width">
+                <input formControlName="salary" matInput placeholder="salary">
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="!formGroup.get('salary').valid && formGroup.get('salary').touched">Please enter Salary</span>
+            </mat-error>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <mat-form-field class="demo-full-width">
+                <input formControlName="skills" matInput placeholder="skills">
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="!formGroup.get('skills').valid && formGroup.get('skills').touched">Please Enter Skills</span>
+            </mat-error>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="content-center">
+            <button mat-raised-button color="accent" [disabled]="!formGroup.valid">Submit</button>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+</table>
