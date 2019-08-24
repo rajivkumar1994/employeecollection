@@ -1,0 +1,27 @@
+{
+  "name": "ndmedsassignmnt",
+  "version": "1.0.0",
+  "description": "Employee details",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha --timeout 3000 server/**/*.test.js",
+    "test-watch": "nodemon --exec \"npm test\""
+  },
+  "author": "Me",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.1",
+    "mongoose": "^5.6.10",
+    "mongoose-sequence": "^5.1.0",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "expect": "^24.9.0",
+    "mocha": "^6.2.0",
+    "supertest": "^4.0.2"
+  }
+}
