@@ -18,7 +18,11 @@ let EmployeeSchema = new Schema({
    skills: {
       type: [String],
       required: true
-   }
+   },
+   /*img: {
+      data: Buffer,
+      contentType: String
+   }*/
 }, {
       collection: 'employees'
    });

@@ -3,13 +3,14 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
 const mongoose = require('./db/mongoose');
+const employeeRoutes = require('./controllers/employee.route');
 
 const app = express();
 mongoose.Promise = global.Promise;
 
-const employeeRoutes = require('./controllers/employee.route');
-
+app.use(express.static('../../client'));
 app.use(bodyParser.json());
 app.use(cors());
 

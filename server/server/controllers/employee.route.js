@@ -1,18 +1,15 @@
+const fs = require('fs');
 const express = require('express');
 const app = express();
 const employeeRoute = express.Router();
+const multer = require('multer');
+
 const { ObjectID } = require('mongodb')
 
-const multer = require('multer');
-const upload = multer({
-    dest: './uploads'
-});
-
-const storage = multer({
-limits: {
-    
-}
-});
+/*app.use(multer({
+    dest: './uploads/',
+    rename: (fieldname, filename) => filename,
+}));*/
 
 let { Employee } = require('../models/employee');
 
@@ -40,14 +37,18 @@ employeeRoute.get('/:id', (req, res) => {
         }).catch(e => res.status(400).send(e));
 });
 
-employeeRoute.put('/', upload.single(), ((req, res) => {
+employeeRoute.put('/', ((req, res) => {
     console.log(req.file);
     let dob = new Date(req.body.dob);
+    let img = {
+        data: fs.readFileSync(req.files),
+        contentType: 'image/png',
+    }
     let employee = new Employee({
         name: req.body.name,
         dob: req.body.dob,
         salary: req.body.salary,
-        skills: req.body.skills
+        skills: req.body.skills,
     });
     employee.save()
         .then(emp => {
