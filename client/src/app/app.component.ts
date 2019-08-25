@@ -96,7 +96,6 @@ export class AppComponent {
     this.newEmployee = true;
     let empno = this.employees[this.employees.length - 1].empno + 1;
     this.employee = {
-      _id:'',
       empno,
       name: '',
       dob: '',

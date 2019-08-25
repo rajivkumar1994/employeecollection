@@ -10,12 +10,16 @@ const employeeRoutes = require('./controllers/employee.route');
 const app = express();
 mongoose.Promise = global.Promise;
 
-app.use(express.static('../../client/build'));
+app.use(express.static('../../client/dist/client'));
+
 app.use(bodyParser.json());
 app.use(cors());
 
 const port = process.env.PORT || 4000;
-
+/*
+app.get('/', (req,res) => {
+    res.sendFile(path.join(__dirname+'../../../client/dist/client/index.html'));
+});*/
 app.use('/employees', employeeRoutes);
 
 const server = app.listen(port, function () {

@@ -40,24 +40,29 @@ employeeRoute.get('/:id', (req, res) => {
 });
 
 employeeRoute.put('/', ((req, res) => {
-    let dob = new Date(req.body.dob);
-    /*let img = {
-        data: fs.readFileSync(req.files),
-        contentType: 'image/png',
-    }*/
-    let employee = new Employee({
-        name: req.body.name,
-        dob: req.body.dob,
-        salary: req.body.salary,
-        skills: req.body.skills,
-    });
-    employee.save()
-        .then(emp => {
-            res.status(200).json(emp);
-        })
-        .catch(err => {
-            res.status(400).send(err);
+    try {
+        let dob = new Date(req.body.dob);
+        /*let img = {
+            data: fs.readFileSync(req.files),
+            contentType: 'image/png',
+        }*/
+        let employee = new Employee({
+            name: req.body.name,
+            dob: req.body.dob,
+            salary: req.body.salary,
+            skills: req.body.skills,
         });
+        employee.save()
+            .then(emp => {
+                res.status(200).json(emp);
+            })
+            .catch(err => {
+                res.status(400).send(err);
+            });
+    } catch (e) {
+        res.status(400).send(e);
+    }
+
 }));
 
 //To Update the Employee using ID
