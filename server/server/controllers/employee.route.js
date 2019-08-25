@@ -15,6 +15,7 @@ let { Employee } = require('../models/employee');
 
 employeeRoute.get('/', ((req, res) => {
     Employee.find()
+        .select('name dob salary skills empno')
         .then(employees => res.json({ employees }))
         .catch(err => res.status(400).send(err));
 }));
@@ -28,6 +29,7 @@ employeeRoute.get('/:id', (req, res) => {
     Employee.findOne({
         _id: id,
     })
+        .select('name dob salary skills empno')
         .then((emp) => {
             if (!emp) {
                 res.status(404).send('Employee not found');

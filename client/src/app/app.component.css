@@ -1,0 +1,11 @@
+.conatiner{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, rgb(67, 206, 162), rgb(24, 90, 157));
+}
+
+.childContainer {
+    width: 70%;
+    height: 50%;
+    background-color: transparent
+}

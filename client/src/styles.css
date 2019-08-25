@@ -89,3 +89,11 @@ img {
  border-radius: 20px;
  height: 70px;
 }
+
+body .ui-dialog {
+    z-index: 999 !important;
+}
+
+body .ui-widget-overlay {
+    z-index: 980 !important;
+}

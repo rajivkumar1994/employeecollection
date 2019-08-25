@@ -1,3 +1,106 @@
-<div>
-  <router-outlet></router-outlet>
+<div fxLayout="column" class="conatiner">
+  <div fxFlex="10" fxLayout="column" fxLayoutAlign="center center" style="background: linear-gradient(to right, rgb(54, 0, 51), rgb(11, 135, 147))">
+    <span style="font-family:'sans-serif'; font-size: 21px;color: white">Employee Dashboard</span>
+  </div>
+  <div fxFlex="90" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="childContainer">
+      <p-table [columns]="cols" [value]="employees" selectionMode="single" [(selection)]="selectedEmployee"
+        (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="caption">
+          List of Employees
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{col.header}}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary" let-rowData>
+          <div style="text-align:left">
+            <p-button label="Add" (click)="showDialogToAdd()"></p-button>
+          </div>
+        </ng-template>
+      </p-table>
+      <p-dialog header="Employee Details" [(visible)]="displayDialog" 
+        [responsive]="true" showEffect="fade" [modal]="true"
+        [style]="{width: '300px'}">
+        <div class="ui-g ui-fluid" *ngIf="employee">
+          <div class="ui-g-12">
+            <div class="ui-g-4">
+              <label for="empno">Employee No</label>
+            </div>
+            <div class="ui-g-8">
+              <input disabled pInputText id="empno" [(ngModel)]="employee.empno" />
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-4">
+              <label for="name">Employee Name</label>
+              <span style="color: red">*</span>
+            </div>
+            <div class="ui-g-8">
+              <input pInputText id="name" [(ngModel)]="employee.name" />
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-4">
+              <label for="dob">DOB</label>
+              <span style="color: red">*</span>
+            </div>
+            <div class="ui-g-8">
+              <mat-form-field class="example-full-width">
+                <input matInput [matDatepicker]="picker" [(ngModel)]="employee.dob" 
+                  placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker">
+                  <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-4">
+              <label for="salary">Salary</label>
+              <span style="color: red">*</span>
+            </div>
+            <div class="ui-g-8">
+              <input pInputText id="salary" [(ngModel)]="employee.salary" />
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-4">
+              <label for="skills">Skills</label>
+              <span style="color: red">*</span>
+            </div>
+            <div class="ui-g-8">
+              <mat-form-field>
+                <mat-select [(ngModel)]="employee.skills" multiple>
+                  <mat-option *ngFor="let skill of skillList" [value]="skill">{{skill}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <p-footer>
+          <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button *ngIf="newEmployee" type="button" pButton icon="fa fa-close" 
+            (click)="cancel()" label="Cancel"></button>
+            <button *ngIf="!newEmployee" type="button" pButton icon="fa fa-close" 
+            (click)="delete()" label="Delete"></button>
+            <button type="button" pButton icon="fa fa-check" 
+            (click)="save()" label="Save"></button>
+          </div>
+        </p-footer>
+      </p-dialog>
+    </mat-card>
+  </div>
 </div>
